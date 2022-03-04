@@ -25,9 +25,7 @@ def webhook():
         first_name = update.effective_chat.first_name
         # Reply with the same message
         # bot.sendMessage(chat_id=chat_id, text=f"{text} {first_name}")
-
-        @bot.message_handler(commands=['start'])
-        def send_welcome(text):
+        if text == '/start':
             bot.send_message(chat_id, "halo")
 
         return 'ok'

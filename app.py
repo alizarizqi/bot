@@ -1,56 +1,33 @@
+# webhook heroku - this tutorial works on cloud.
+#   to run flask on local server
+#       export FLASK_APP=tutorial6
+#       flask run
+# https://github.com/python-telegram-bot/python-telegram-bot/wiki/Where-to-host-Telegram-Bots#vps
+# https://github.com/python-telegram-bot/python-telegram-bot/wiki/Webhooks
+# https://python-telegram-bot.readthedocs.io/
+# https://seminar.io/2018/09/03/building-serverless-telegram-bot/
+# https://www.heroku.com/
+from flask import Flask, render_template, request
 
-import telebot
-from flask import Flask, request
 import os
+import telegram
 
-TOKEN = "5159960474:AAH26K6_EjDc-GgeFclKIRbmaPc9hbGTPA4"
-bot = telebot.TeleBot(token=TOKEN)
-server = Flask(__name__)
-
-
-def findat(msg):
-    # from a list of texts, it finds the one with the '@' sign
-    for i in msg:
-        if '@' in i:
-            return i
+app = Flask(__name__)
 
 
-@bot.message_handler(commands=['start'])  # welcome message handler
-def send_welcome(message):
-    bot.reply_to(message, '(placeholder text)')
-
-
-@bot.message_handler(commands=['help'])  # help message handler
-def send_welcome(message):
-    bot.reply_to(message, 'ALPHA = FEATURES MAY NOT WORK')
-
-
-@bot.message_handler(func=lambda msg: msg.text is not None and '@' in msg.text)
-# lambda function finds messages with the '@' sign in them
-# in case msg.text doesn't exist, the handler doesn't process it
-def at_converter(message):
-    texts = message.text.split()
-    at_text = findat(texts)
-    if at_text == '@':  # in case it's just the '@', skip
-        pass
-    else:
-        insta_link = "https://instagram.com/{}".format(at_text[1:])
-        bot.reply_to(message, insta_link)
-
-
-@server.route('/' + TOKEN, methods=['POST'])
-def getMessage():
-    bot.process_new_updates(
-        [telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return "!", 200
-
-
-@server.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url='https://skripsi2022.herokuapp.com/' + TOKEN)
-    return "!", 200
+    bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
+    if request.method == "POST":
+        update = telegram.Update.de_json(request.get_json(force=True), bot)
+        chat_id = update.effective_chat.id
+        text = update.message.text
+        first_name = update.effective_chat.first_name
+        # Reply with the same message
+        bot.sendMessage(chat_id=chat_id, text=f"{text} {first_name}")
+        return 'ok'
+    return 'error'
 
 
-if __name__ == "__main__":
-    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+def index():
+    return webhook()

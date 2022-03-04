@@ -27,8 +27,8 @@ def webhook():
         # bot.sendMessage(chat_id=chat_id, text=f"{text} {first_name}")
 
         @bot.message_handler(commands=['start'])
-        def send_welcome(message):
-            bot.send_message(message.chat.id, "halo")
+        def send_welcome(text):
+            bot.send_message(chat_id, "halo")
 
         return 'ok'
     return 'error'

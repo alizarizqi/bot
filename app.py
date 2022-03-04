@@ -24,9 +24,11 @@ def webhook():
         text = update.message.text
         first_name = update.effective_chat.first_name
         # Reply with the same message
-        bot.sendMessage(chat_id=chat_id, text=f"{text} {first_name}")
+
         if text == '/start':
             bot.send_message(chat_id, "halo")
+        else:
+            bot.sendMessage(chat_id=chat_id, text=f"{text} {first_name}")
 
         return 'ok'
     return 'error'

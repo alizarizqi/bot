@@ -22,13 +22,21 @@ def webhook():
         update = telegram.Update.de_json(request.get_json(force=True), bot)
         chat_id = update.effective_chat.id
         text = update.message.text
-        first_name = update.effective_chat.first_name
+        # first_name = update.effective_chat.first_name
         # Reply with the same message
 
-        if text == '/start':
-            bot.send_message(chat_id, "halo")
+        kalimat = text.split()
+        spam2 = len(kalimat)
+        if(spam2 <= 10):
+            bot.send_message(chat_id, "Good")
         else:
-            bot.sendMessage(chat_id=chat_id, text=f"{text} {first_name}")
+            bot.send_message(
+                chat_id, "Sorry, your text is too much. Please write the simple text")
+
+        # if text == '/start':
+        #     bot.send_message(chat_id, "halo")
+        # else:
+        #     bot.sendMessage(chat_id=chat_id, text=f"{text} {first_name}")
 
         return 'ok'
     return 'error'

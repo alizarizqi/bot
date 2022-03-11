@@ -11,8 +11,6 @@ from flask import Flask, render_template, request
 
 import os
 import telegram
-import langdetect
-from langdetect import detect
 
 app = Flask(__name__)
 

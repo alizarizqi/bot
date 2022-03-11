@@ -11,6 +11,8 @@ from flask import Flask, render_template, request
 
 import os
 import telegram
+import langdetect
+from langdetect import detect
 
 app = Flask(__name__)
 
@@ -28,7 +30,9 @@ def webhook():
         kalimat = text.split()
         spam2 = len(kalimat)
         if(spam2 <= 10):
-            bot.send_message(chat_id, "Good")
+            lang = detect(text)
+            if(lang == 'en'):
+                bot.send_message(chat_id, "Good")
         else:
             bot.send_message(
                 chat_id, "Sorry, your text is too much. Please write the simple text")

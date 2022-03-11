@@ -26,20 +26,21 @@ def webhook():
         # first_name = update.effective_chat.first_name
         # Reply with the same message
 
-        kalimat = text.split()
-        spam2 = len(kalimat)
-        if(spam2 <= 10):
-            lang = detect(text)
-            if(lang == 'en'):
-                bot.send_message(chat_id, "Good")
+        # kalimat = text.split()
+        # spam2 = len(kalimat)
+        # if(spam2 <= 10):
+        #     lang = detect(text)
+        #     if(lang == 'en'):
+        #         bot.send_message(chat_id, "Good")
+        # else:
+        #     bot.send_message(
+        #         chat_id, "Sorry, your text is too much. Please write the simple text")
+        lang = detect(text)
+        if lang == 'en':
+            bot.send_message(chat_id, "English")
         else:
             bot.send_message(
                 chat_id, "Sorry, your text is too much. Please write the simple text")
-
-        # if text == '/start':
-        #     bot.send_message(chat_id, "halo")
-        # else:
-        #     bot.sendMessage(chat_id=chat_id, text=f"{text} {first_name}")
 
         return 'ok'
     return 'error'

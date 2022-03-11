@@ -36,11 +36,7 @@ def webhook():
         #     bot.send_message(
         #         chat_id, "Sorry, your text is too much. Please write the simple text")
         lang = detect(text)
-        if lang == 'en':
-            bot.send_message(chat_id, "English")
-        else:
-            bot.send_message(
-                chat_id, "Sorry, your text is too much. Please write the simple text")
+        bot.send_message(chat_id, lang)
 
         return 'ok'
     return 'error'

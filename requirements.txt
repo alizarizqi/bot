@@ -4,6 +4,7 @@ gunicorn
 python-telegram-bot
 spacy
 langdetect
+spacy_langdetect
 # click==8.0.3
 # colorama==0.4.4
 # cycler==0.10.0

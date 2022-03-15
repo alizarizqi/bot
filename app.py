@@ -29,17 +29,17 @@ def webhook():
         # first_name = update.effective_chat.first_name
         # Reply with the same message
 
-        kalimat = text.split()
-        spam2 = len(kalimat)
-        if(spam2 <= 10):
-            # lang = detect(text)
-            # if(lang == 'en'):
-            doc = nlp(text)
-            lang = doc._.language
-            bot.send_message(chat_id, lang)
-        else:
-            bot.send_message(
-                chat_id, "Sorry, your text is too much. Please write the simple text")
+        # kalimat = text.split()
+        # spam2 = len(kalimat)
+        # if(spam2 <= 10):
+        # lang = detect(text)
+        # if(lang == 'en'):
+        doc = nlp(text)
+        lang = doc._.language
+        bot.send_message(chat_id, lang)
+        # else:
+        #     bot.send_message(
+        #         chat_id, "Sorry, your text is too much. Please write the simple text")
 
         # if text == '/start':
         #     bot.send_message(chat_id, "halo")

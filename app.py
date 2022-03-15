@@ -11,10 +11,12 @@ from flask import Flask, render_template, request
 
 import os
 import telegram
-import spacy
-from spacy_langdetect import LanguageDetector
-nlp = spacy.load("en")
-nlp.add_pipe(LanguageDetector(), name="language_detector", last=True)
+# import spacy
+# from spacy_langdetect import LanguageDetector
+# nlp = spacy.load("en")
+# nlp.add_pipe(LanguageDetector(), name="language_detector", last=True)
+
+from langdetect import detect
 
 app = Flask(__name__)
 
@@ -34,8 +36,7 @@ def webhook():
         # if(spam2 <= 10):
         # lang = detect(text)
         # if(lang == 'en'):
-        doc = nlp(text)
-        lang = doc._.language
+        lang = detect(text)
         bot.send_message(chat_id, lang)
         # else:
         #     bot.send_message(

@@ -14,7 +14,9 @@ import telegram
 import spacy
 from spacy_langdetect import LanguageDetector
 nlp = spacy.load("en_core_web_sm")
-nlp.add_pipe(name="language_detector")
+language_detector = LanguageDetector()
+nlp.add_pipe(language_detector)
+
 
 # from langdetect import detect
 

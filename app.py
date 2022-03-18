@@ -33,7 +33,8 @@ def webhook():
         chat_id = update.effective_chat.id
         text = update.message.text
         lang = detect(text)
-        bot.send_message(chat_id, lang)
+        if lang == "en":
+            bot.send_message(chat_id, "good")
 
 
 # first_name = update.effective_chat.first_name

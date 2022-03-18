@@ -38,6 +38,9 @@ def webhook():
         if(spam2 <= 10):
             if lang == "en":
                 bot.send_message(chat_id, "good")
+        else:
+            bot.send_message(
+                chat_id, "Sorry, your text is too much. Please write the simple text")
 
 
 # first_name = update.effective_chat.first_name

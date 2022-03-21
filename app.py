@@ -47,7 +47,8 @@ def webhook():
 
         match_dot = re.compile(r"\.")
         dotInText = match_dot.search(text)
-        bot.send_message(chat_id, dotInText.group())
+        if dotInText.group:
+            bot.send_message(chat_id, "detect dot")
 # first_name = update.effective_chat.first_name
 # Reply with the same message
 

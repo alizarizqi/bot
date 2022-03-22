@@ -36,7 +36,7 @@ def webhook():
         # return spam(chat_id, text)
         match_dot = re.compile(r"\.")
         dotInText = match_dot.search(text)
-        if dotInText.group():
+        if dotInText.group:
             bot.send_message(
                 chat_id, "Sorry, your text is too much. Please write the simple text")
         # else:
@@ -69,29 +69,6 @@ def webhook():
 
         return 'ok'
     return 'error'
-
-
-# def spam(chat_id, text):
-#     bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
-#     kalimat = text.split()
-#     spam2 = len(kalimat)
-#     # lang = detect(text)
-#     if(spam2 <= 10):
-#         bot.send_message(
-#             chat_id, "yes")
-
-#     else:
-#         bot.send_message(
-#             chat_id, "Sorry, your text is too much. Please write the simple text")
-
-#     exit()
-# def languageDetect(chat_id, text):
-#     bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
-#     lang = detect(text)
-#     if lang == "en":
-#         bot.send_message(chat_id, "good")
-#     else:
-#         bot.send_message(chat_id, "not good")
 
 
 def index():

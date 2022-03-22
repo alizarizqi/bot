@@ -33,12 +33,12 @@ def webhook():
         update = telegram.Update.de_json(request.get_json(force=True), bot)
         chat_id = update.effective_chat.id
         text = update.message.text
-        return spam(chat_id, text)
-        # match_dot = re.compile(r"\.")
-        # dotInText = match_dot.search(text)
-        # if dotInText.group:
-        #     bot.send_message(
-        #         chat_id, "Sorry, your text is too much. Please write the simple text")
+        # return spam(chat_id, text)
+        match_dot = re.compile(r"\.")
+        dotInText = match_dot.search(text)
+        if dotInText.group:
+            bot.send_message(
+                chat_id, "Sorry, your text is too much. Please write the simple text")
         # else:
         #     lang = detect(text)
         #     if lang == "en":
@@ -67,24 +67,24 @@ def webhook():
 # else:
 #     bot.sendMessage(chat_id=chat_id, text=f"{text} {first_name}")
 
-        # return 'ok'
+        return 'ok'
     return 'error'
 
 
-def spam(chat_id, text):
-    bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
-    kalimat = text.split()
-    spam2 = len(kalimat)
-    # lang = detect(text)
-    if(spam2 <= 10):
-        bot.send_message(
-            chat_id, "yes")
+# def spam(chat_id, text):
+#     bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
+#     kalimat = text.split()
+#     spam2 = len(kalimat)
+#     # lang = detect(text)
+#     if(spam2 <= 10):
+#         bot.send_message(
+#             chat_id, "yes")
 
-    else:
-        bot.send_message(
-            chat_id, "Sorry, your text is too much. Please write the simple text")
+#     else:
+#         bot.send_message(
+#             chat_id, "Sorry, your text is too much. Please write the simple text")
 
-    exit()
+#     exit()
 # def languageDetect(chat_id, text):
 #     bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
 #     lang = detect(text)

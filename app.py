@@ -38,12 +38,12 @@ def webhook():
         if dotInText.group:
             bot.send_message(
                 chat_id, "Sorry, your text is too much. Please write the simple text")
-
-        lang = detect(text)
-        if lang == "en":
-            bot.send_message(chat_id, "good")
         else:
-            bot.send_message(chat_id, "not good")
+            lang = detect(text)
+            if lang == "en":
+                bot.send_message(chat_id, "good")
+            else:
+                bot.send_message(chat_id, "not good")
         # kalimat = text.split()
         # spam2 = len(kalimat)
         # if(spam2 <= 10):

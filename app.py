@@ -36,7 +36,7 @@ def webhook():
         # return spam(chat_id, text)
         match_dot = re.compile(r"\.")
         dotInText = match_dot.search(text)
-        if dotInText.group:
+        if dotInText.group():
             bot.send_message(
                 chat_id, "Sorry, your text is too much. Please write the simple text")
         # else:

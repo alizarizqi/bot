@@ -71,6 +71,7 @@ def webhook():
     return 'error'
 
 
+@app.route('/')
 def spam(chat_id, bot, text):
     bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
     kalimat = text.split()
@@ -83,6 +84,7 @@ def spam(chat_id, bot, text):
             chat_id, "Sorry, your text is too much. Please write the simple text")
 
 
+@app.route('/')
 def languageDetect(chat_id, bot, text):
     bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
     lang = detect(text)

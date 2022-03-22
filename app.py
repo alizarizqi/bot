@@ -72,6 +72,7 @@ def webhook():
 
 
 def spam(chat_id, bot, text):
+    bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
     kalimat = text.split()
     spam2 = len(kalimat)
     # lang = detect(text)
@@ -83,6 +84,7 @@ def spam(chat_id, bot, text):
 
 
 def languageDetect(chat_id, bot, text):
+    bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
     lang = detect(text)
     if lang == "en":
         bot.send_message(chat_id, "good")

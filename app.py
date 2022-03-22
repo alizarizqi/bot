@@ -33,27 +33,28 @@ def webhook():
         update = telegram.Update.de_json(request.get_json(force=True), bot)
         chat_id = update.effective_chat.id
         text = update.message.text
-        match_dot = re.compile(r"\.")
-        dotInText = match_dot.search(text)
-        if dotInText.group:
-            bot.send_message(
-                chat_id, "Sorry, your text is too much. Please write the simple text")
-        else:
-            lang = detect(text)
-            if lang == "en":
-                bot.send_message(chat_id, "good")
-            else:
-                bot.send_message(chat_id, "not good")
-        # kalimat = text.split()
-        # spam2 = len(kalimat)
-        # if(spam2 <= 10):
+        # match_dot = re.compile(r"\.")
+        # dotInText = match_dot.search(text)
+        # if dotInText.group:
+        #     bot.send_message(
+        #         chat_id, "Sorry, your text is too much. Please write the simple text")
+        # else:
+        #     lang = detect(text)
         #     if lang == "en":
         #         bot.send_message(chat_id, "good")
         #     else:
         #         bot.send_message(chat_id, "not good")
-        # else:
-        #     bot.send_message(
-        #         chat_id, "Sorry, your text is too much. Please write the simple text")
+        kalimat = text.split()
+        spam2 = len(kalimat)
+        lang = detect(text)
+        if(spam2 <= 10):
+            if lang == "en":
+                bot.send_message(chat_id, "good")
+            else:
+                bot.send_message(chat_id, "not good")
+        else:
+            bot.send_message(
+                chat_id, "Sorry, your text is too much. Please write the simple text")
 
         #
 # first_name = update.effective_chat.first_name

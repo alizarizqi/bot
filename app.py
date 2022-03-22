@@ -79,11 +79,12 @@ def spam(chat_id, text):
     if(spam2 <= 10):
         bot.send_message(
             chat_id, "yes")
+
     else:
         bot.send_message(
             chat_id, "Sorry, your text is too much. Please write the simple text")
 
-
+    exit()
 # def languageDetect(chat_id, text):
 #     bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
 #     lang = detect(text)

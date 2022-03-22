@@ -33,7 +33,7 @@ def webhook():
         update = telegram.Update.de_json(request.get_json(force=True), bot)
         chat_id = update.effective_chat.id
         text = update.message.text
-        spam(bot, chat_id, text)
+        return spam(bot, chat_id, text)
         # match_dot = re.compile(r"\.")
         # dotInText = match_dot.search(text)
         # if dotInText.group:
@@ -71,27 +71,29 @@ def webhook():
     return 'error'
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def spam(chat_id, bot, text):
     bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
-    kalimat = text.split()
-    spam2 = len(kalimat)
-    # lang = detect(text)
-    if(spam2 <= 10):
-        languageDetect()
-    else:
-        bot.send_message(
-            chat_id, "Sorry, your text is too much. Please write the simple text")
+    if request.method == "POST":
+        kalimat = text.split()
+        spam2 = len(kalimat)
+        # lang = detect(text)
+        if(spam2 <= 10):
+            return languageDetect()
+        else:
+            bot.send_message(
+                chat_id, "Sorry, your text is too much. Please write the simple text")
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def languageDetect(chat_id, bot, text):
     bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
-    lang = detect(text)
-    if lang == "en":
-        bot.send_message(chat_id, "good")
-    else:
-        bot.send_message(chat_id, "not good")
+    if request.method == "POST":
+        lang = detect(text)
+        if lang == "en":
+            bot.send_message(chat_id, "good")
+        else:
+            bot.send_message(chat_id, "not good")
 
 
 def index():

@@ -35,7 +35,8 @@ def webhook():
         text = update.message.text
         match_dot = re.compile(r"\.")
         dotInText = match_dot.search(text)
-        if dotInText.group == '.':
+        dot = dotInText.group()
+        if dot == '.':
             bot.send_message(
                 chat_id, "Sorry, your text is too much. Please write the simple text")
         else:

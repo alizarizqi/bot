@@ -5,6 +5,7 @@ import re
 from langdetect import detect
 import spacy
 nlp = spacy.load("en_core_web_sm")
+from textblob import TextBlob
 
 app = Flask(__name__)
 
@@ -16,16 +17,20 @@ def webhook():
         update = telegram.Update.de_json(request.get_json(force=True), bot)
         chat_id = update.effective_chat.id
         text = update.message.text
-        pat = re.compile(r'([A-Z|a-z][^\.!?]*[\.!?])')
-        patt = pat.findall(text)
-        # lang = detect(patt)
-        for i in patt:
-            langg = detect(i)
-            if langg == 'en':
-                doc = nlp(i)
-                pos = " ".join(token.tag_ for token in doc)
-                bot.send_message(chat_id, pos)
-            break
+        a = TextBlob(text)
+        b = a.correct()
+        bot.send_message(chat_id, b)
+
+        # pat = re.compile(r'([A-Z|a-z][^\.!?]*[\.!?])')
+        # patt = pat.findall(text)
+        # # lang = detect(patt)
+        # for i in patt:
+        #     langg = detect(i)
+        #     if langg == 'en':
+        #         doc = nlp(i)
+        #         pos = " ".join(token.tag_ for token in doc)
+        #         bot.send_message(chat_id, pos)
+        #     break
 
         # kalimat = text.split()
         # spam2 = len(kalimat)

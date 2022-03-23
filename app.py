@@ -17,9 +17,9 @@ def webhook():
         text = update.message.text
         pat = re.compile(r'([A-Z|a-z][^\.!?]*[\.!?])')
         patt = pat.findall(text)
-        lang = detect(patt)
-        bot.send_message(chat_id, lang)
-        
+        # lang = detect(patt)
+        bot.send_message(chat_id, patt)
+
         # kalimat = text.split()
         # spam2 = len(kalimat)
         # if(spam2 <= 10):

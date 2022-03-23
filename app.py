@@ -2,8 +2,9 @@ from flask import Flask, request
 import os
 import telegram
 import re
-# from langdetect import detect
 from langdetect import detect
+# import spacy
+# nlp = spacy.load("en_core_web_sm")
 
 app = Flask(__name__)
 
@@ -20,7 +21,8 @@ def webhook():
         # lang = detect(patt)
         for i in patt:
             langg = detect(i)
-            bot.send_message(chat_id, langg)
+            if langg == 'en':
+                bot.send_message(chat_id, i)
             break
 
         # kalimat = text.split()

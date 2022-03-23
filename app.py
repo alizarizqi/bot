@@ -15,12 +15,15 @@ def webhook():
         update = telegram.Update.de_json(request.get_json(force=True), bot)
         chat_id = update.effective_chat.id
         text = update.message.text
-        kalimat = text.split()
-        spam2 = len(kalimat)
-        if(spam2 <= 10):
-            bot.send_message(chat_id, "okee")
-        # return spam(chat_id, text)
-        # match_dot = re.compile(r"\.")
+        pat = re.compile(r'([A-Z|a-z][^\.!?]*[\.!?])')
+        patt = pat.findall(text)
+        bot.send_message(chat_id, patt)
+        # kalimat = text.split()
+        # spam2 = len(kalimat)
+        # if(spam2 <= 10):
+        #     bot.send_message(chat_id, "okee")
+
+        # match_dot = re.compile((?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s)
         # dotInText = match_dot.search(text)
         # if dotInText.group:
         #     bot.send_message(

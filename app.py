@@ -19,7 +19,8 @@ def webhook():
         patt = pat.findall(text)
         # lang = detect(patt)
         for i in patt:
-            bot.send_message(chat_id, i)
+            langg = detect(i)
+            bot.send_message(chat_id, langg)
             break
 
         # kalimat = text.split()

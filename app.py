@@ -18,21 +18,22 @@ def webhook():
         update = telegram.Update.de_json(request.get_json(force=True), bot)
         chat_id = update.effective_chat.id
         text = update.message.text
-        check = Speller(lang='en')
-        spell = check(text)
-        # a = TextBlob(text)
-        bot.send_message(chat_id, spell)
+        # check = Speller(lang='en')
+        # spell = check(text)
+        # bot.send_message(chat_id, spell)
 
-        # pat = re.compile(r'([A-Z|a-z][^\.!?]*[\.!?])')
-        # patt = pat.findall(text)
-        # # lang = detect(patt)
-        # for i in patt:
-        #     langg = detect(i)
-        #     if langg == 'en':
-        #         doc = nlp(i)
-        #         pos = " ".join(token.tag_ for token in doc)
-        #         bot.send_message(chat_id, pos)
-        #     break
+        pat = re.compile(r'([A-Z|a-z][^\.!?]*[\.!?])')
+        patt = pat.findall(text)
+        # lang = detect(patt)
+        for i in patt:
+            langg = detect(i)
+            if langg == 'en':
+                # doc = nlp(i)
+                # pos = " ".join(token.tag_ for token in doc)
+                check = Speller(lang='en')
+                spell = check(i)
+                bot.send_message(chat_id, spell)
+            break
 
         # kalimat = text.split()
         # spam2 = len(kalimat)

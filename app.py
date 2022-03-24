@@ -31,8 +31,8 @@ def webhook():
                 # doc = nlp(i)
                 # pos = " ".join(token.tag_ for token in doc)
                 check = Speller(lang='en')
-                spell = check(i)
-                bot.send_message(chat_id, spell)
+                spelll = check(i)
+                bot.send_message(chat_id, spelll)
             break
 
         # kalimat = text.split()

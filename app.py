@@ -28,7 +28,7 @@ def webhook():
         for i in patt:
             langg = detect(i)
             if langg == 'en':
-                
+
                 check = Speller(lang='en')
                 spelll = check(i)
                 doc = nlp(spelll)

@@ -1,5 +1,6 @@
-from textblob import TextBlob
+# from textblob import TextBlob
 from flask import Flask, request
+from autocorrect import Speller
 import os
 import telegram
 import re
@@ -17,8 +18,8 @@ def webhook():
         update = telegram.Update.de_json(request.get_json(force=True), bot)
         chat_id = update.effective_chat.id
         text = update.message.text
-        a = TextBlob(text)
-        bot.send_message(chat_id, a.correct())
+        # a = TextBlob(text)
+        # bot.send_message(chat_id, a.correct())
 
         # pat = re.compile(r'([A-Z|a-z][^\.!?]*[\.!?])')
         # patt = pat.findall(text)

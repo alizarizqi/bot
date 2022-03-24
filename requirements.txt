@@ -4,6 +4,7 @@ gunicorn
 python-telegram-bot
 spacy
 langdetect
+autocorrect
 nltk
 textblob
 spacy_langdetect

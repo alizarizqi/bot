@@ -68,7 +68,7 @@ def webhook():
 #         chat_id, "Sorry, your text is too much. Please write the simple text")
 
         return 'ok'
-    return poss
+    return 'errorrrr'
 
 
 def index():

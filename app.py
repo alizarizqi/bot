@@ -19,7 +19,8 @@ def webhook():
         text = update.message.text
         a = TextBlob(text)
         b = a.correct()
-        bot.send_message(chat_id, b)
+        for i in b:
+            bot.send_message(chat_id, i)
 
         # pat = re.compile(r'([A-Z|a-z][^\.!?]*[\.!?])')
         # patt = pat.findall(text)

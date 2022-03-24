@@ -28,12 +28,12 @@ def webhook():
         for i in patt:
             langg = detect(i)
             if langg == 'en':
-
                 check = Speller(lang='en')
                 spelll = check(i)
                 doc = nlp(spelll)
                 pos = " ".join(token.tag_ for token in doc)
-                bot.send_message(chat_id, pos)
+                for word in pos:
+                    bot.send_message(chat_id, word)
             break
 
         # kalimat = text.split()

@@ -1,3 +1,4 @@
+from textblob import TextBlob
 from flask import Flask, request
 import os
 import telegram
@@ -5,7 +6,6 @@ import re
 from langdetect import detect
 import spacy
 nlp = spacy.load("en_core_web_sm")
-from textblob import TextBlob
 
 app = Flask(__name__)
 
@@ -21,7 +21,7 @@ def webhook():
         b = a.correct()
         for i in b:
             bot.send_message(chat_id, i)
-
+            break
         # pat = re.compile(r'([A-Z|a-z][^\.!?]*[\.!?])')
         # patt = pat.findall(text)
         # # lang = detect(patt)

@@ -32,8 +32,7 @@ def webhook():
                 spelll = check(i)
                 doc = nlp(spelll)
                 poss = " ".join(token.tag_ for token in doc)
-                for word in poss:
-                    bot.send_message(chat_id, word)
+
             break
 
         # kalimat = text.split()
@@ -69,7 +68,7 @@ def webhook():
 #         chat_id, "Sorry, your text is too much. Please write the simple text")
 
         return 'ok'
-    return 'error'
+    return poss
 
 
 def index():

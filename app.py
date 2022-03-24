@@ -16,8 +16,9 @@ def webhook():
     bot = telegram.Bot(token=os.environ["YOURAPIKEY"])
     if request.method == "POST":
         update = telegram.Update.de_json(request.get_json(force=True), bot)
-        chat_id = update.effective_chat.id
-        text = update.message.text
+        # chat_id = update.effective_chat.id
+        # text = update.message.text
+        text = "i eat breakfest tiday."
         # check = Speller(lang='en')
         # spell = check(text)
         # bot.send_message(chat_id, spell)
@@ -68,7 +69,7 @@ def webhook():
 #         chat_id, "Sorry, your text is too much. Please write the simple text")
 
         return 'ok'
-    return 'errorrrr'
+    return poss
 
 
 def index():

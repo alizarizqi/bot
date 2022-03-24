@@ -23,8 +23,8 @@ def webhook():
         patt = pat.findall(text)
         # lang = detect(patt)
         for i in patt:
-            langg = detect(i)
-            if langg == 'en':
+            langgg = detect(i)
+            if langgg == 'en':
                 check = Speller(lang='en')
                 spelll = check(i)
                 bot.send_message(chat_id, spelll)

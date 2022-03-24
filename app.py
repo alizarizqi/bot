@@ -26,8 +26,8 @@ def webhook():
             langgg = detect(i)
             if langgg == 'en':
                 check = Speller(lang='en')
-                spelll = check(i)
-                bot.send_message(chat_id, spelll)
+                spelllcheck = check(i)
+                bot.send_message(chat_id, spelllcheck)
                 # doc = nlp(spelll)
                 # poss = " ".join(token.tag_ for token in doc)
 

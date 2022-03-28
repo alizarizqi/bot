@@ -29,7 +29,7 @@ def webhook():
                 spelllcheck = check(i)
 
                 doc = nlp(spelllcheck)
-                poss = " ".join(token.pos_ for token in doc)
+                poss = " ".join(token.text for token in doc)
                 bot.sendMessage(chat_id, poss)
 
             break

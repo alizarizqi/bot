@@ -30,9 +30,7 @@ def webhook():
 
                 doc = nlp(spelllcheck)
                 poss = " ".join(token.tag_ for token in doc)
-                for i in poss:
-                    bot.send_message(chat_id, i)
-                    break
+                bot.sendMessage(chat_id, poss)
 
             break
 

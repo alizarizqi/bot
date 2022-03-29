@@ -29,7 +29,7 @@ def webhook():
                 spelllcheck = check(i)
 
                 doc = nlp(spelllcheck)
-                poss = " ".join(token.text for token in doc)
+                poss = " ".join(token.pos_ for token in doc)
                 if "PRON" and "VERB" in poss:
                     bot.sendMessage(chat_id, "lengkap")
                 else:

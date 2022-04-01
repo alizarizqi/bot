@@ -35,7 +35,8 @@ def webhook():
                     bot.sendMessage(chat_id, posstext)
                 else:
                     bot.sendMessage(chat_id, "tidak lengkap")
-
+            else:
+                bot.sendMessage(chat_id, "English please")
             break
 
         # kalimat = text.split()

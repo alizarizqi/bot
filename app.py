@@ -23,16 +23,16 @@ def webhook():
         patt = pat.findall(text)
         # lang = detect(patt)
 
-        def tag_list_component(doc):
-            tags = [token.tag_ for token in doc]
-            doc.set_extension('tags_', default=False, force=True)
-            doc._.tags_ = tags
+        # def tag_list_component(doc):
+        #     tags = [token.tag_ for token in doc]
+        #     doc.set_extension('tags_', default=False, force=True)
+        #     doc._.tags_ = tags
 
-            return doc
+        #     return doc
 
-        if(nlp.has_pipe("tag_list_pipe")):
-            nlp.remove_pipe("tag_list_pipe")
-        nlp.add_pipe(tag_list_component, name="tag_list_pipe")
+        # if(nlp.has_pipe("tag_list_pipe")):
+        #     nlp.remove_pipe("tag_list_pipe")
+        # nlp.add_pipe(tag_list_component, name="tag_list_pipe")
 
         for i in patt:
             langgg = detect(i)
@@ -41,15 +41,15 @@ def webhook():
                 spelllcheck = check(i)
 
                 doc = nlp(spelllcheck)
-                doc2 = doc._.tags_
-                bot.sendMessage(chat_id, doc2)
+                # doc2 = doc._.tags_
+                # bot.sendMessage(chat_id, doc2)
 
-                # poss = " ".join(token.pos_ for token in doc)
-                # posstext = " ".join(token.text for token in doc)
-                # if "PRON" and "VERB" in poss:
-                #     bot.sendMessage(chat_id, posstext)
-                # else:
-                #     bot.sendMessage(chat_id, "tidak lengkap")
+                poss = " ".join(token.pos_ for token in doc)
+                posstext = " ".join(token.text for token in doc)
+                if "PRON" and "VERB" in poss:
+                    bot.sendMessage(chat_id, posstext)
+                else:
+                    bot.sendMessage(chat_id, "tidak lengkap")
             else:
                 bot.sendMessage(chat_id, "English please")
             break

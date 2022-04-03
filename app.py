@@ -24,24 +24,27 @@ def webhook():
         # lang = detect(patt)
         for i in patt:
             langgg = detect(i)
+
+            def tag_list_component(doc):
+                tags = [token.tag_ for token in doc]
+                doc.set_extension('tags_', default=False, force=True)
+                doc._.tags_ = tags
+
+                return doc
+
+            if(nlp.has_pipe("tag_list_pipe")):
+                nlp.remove_pipe("tag_list_pipe")
+            nlp.add_pipe(tag_list_component, name="tag_list_pipe")
+
             if langgg == 'en':
                 check = Speller(lang='en')
                 spelllcheck = check(i)
 
-                def tag_list_component(doc):
-                    tags = [token.tag_ for token in doc]
-                    doc.set_extension('tags_', default=False, force=True)
-                    doc._.tags_ = tags
-
-                    return doc
-
-                if(nlp.has_pipe("tag_list_pipe")):
-                    nlp.remove_pipe("tag_list_pipe")
-                    nlp.add_pipe(tag_list_component, name="tag_list_pipe")
-
                 doc = nlp(spelllcheck)
                 doc2 = doc._.tags_
-                bot.sendMessage(chat_id, doc2)
+                for i in doc2:
+                    bot.sendMessage(chat_id, i)
+                    break
                 # poss = " ".join(token.pos_ for token in doc)
                 # posstext = " ".join(token.text for token in doc)
                 # if "PRON" and "VERB" in poss:

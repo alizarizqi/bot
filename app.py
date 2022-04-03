@@ -40,7 +40,8 @@ def webhook():
                     nlp.add_pipe(tag_list_component, name="tag_list_pipe")
 
                 doc = nlp(spelllcheck)
-                bot.sendMessage(chat_id, doc._.tags_)
+                doc2 = doc._.tags_
+                bot.sendMessage(chat_id, doc2)
                 # poss = " ".join(token.pos_ for token in doc)
                 # posstext = " ".join(token.text for token in doc)
                 # if "PRON" and "VERB" in poss:

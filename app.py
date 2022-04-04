@@ -48,7 +48,10 @@ def webhook():
                 # posstext = " ".join(token.text for token in doc)
                 possplit = poss.split()
                 if "PRON" and "VERB" in poss:
-                    bot.sendMessage(chat_id, possplit[0])
+                    if possplit.index("PRON") != 0:
+                        i = possplit.index("PRON")
+                        possplit[0], possplit[i] = possplit[i], possplit[0]
+                        bot.sendMessage(chat_id, possplit)
                 else:
                     bot.sendMessage(chat_id, "tidak lengkap")
             else:

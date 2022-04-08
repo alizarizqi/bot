@@ -59,14 +59,14 @@ def webhook():
         if langgg == 'en':
             check = Speller(lang='en')
             sp = check(text)
-        textsplit = sp.split()
-        doc = nlp(sp)
-        poss = " ".join(token.pos_ for token in doc)
-        possplit = poss.split()
-        grammar_checker(" ".join(textsplit), textsplit, possplit)
-        output2 = textsplit
-        output3 = ' '.join(output2)
-        bot.sendMessage(chat_id, output3)
+            textsplit = sp.split()
+            doc = nlp(sp)
+            poss = " ".join(token.pos_ for token in doc)
+            possplit = poss.split()
+            grammar_checker(" ".join(textsplit), textsplit, possplit)
+            output2 = textsplit
+            output3 = ' '.join(output2)
+            bot.sendMessage(chat_id, output3)
 
         return 'ok'
     return 'error'

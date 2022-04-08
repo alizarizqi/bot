@@ -26,8 +26,8 @@ def webhook():
             # textsplit = sp.split()
             doc = nlp(sp)
             poss = " ".join(token.pos_ for token in doc)
-            possplit = poss.split()
-            bot.send_message(chat_id, possplit)
+            # possplit = poss.split()
+            bot.send_message(chat_id, poss)
         # grammar = [{
         #     "pattern": ["VERB", "PRON"],
         #     "pesan":"Kata kerja ditempatkan setelah kata ganti",

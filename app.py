@@ -57,8 +57,8 @@ def webhook():
                                 grammar_id.extend([i, i+1])
         langgg = detect(text)
         if langgg == 'en':
-            check = Speller(lang='en')
-            sp = check(text)
+            checkk = Speller(lang='en')
+            sp = checkk(text)
             textsplit = sp.split()
             doc = nlp(sp)
             poss = " ".join(token.pos_ for token in doc)

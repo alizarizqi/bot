@@ -19,7 +19,7 @@ def webhook():
         chat_id = update.effective_chat.id
         text = update.message.text
         # grammar_id = []
-        # langgg = detect(text)
+        langgg = detect(text)
         # if langgg == 'en':
         #     checkk = Speller(lang='en')
         #     sp = checkk(text)
@@ -27,7 +27,7 @@ def webhook():
         #     doc = nlp(sp)
         #     poss = " ".join(token.pos_ for token in doc)
         # possplit = poss.split()
-        bot.send_message(chat_id, text)
+        bot.send_message(chat_id, langgg)
         # grammar = [{
         #     "pattern": ["VERB", "PRON"],
         #     "pesan":"Kata kerja ditempatkan setelah kata ganti",

@@ -18,77 +18,55 @@ def webhook():
         update = telegram.Update.de_json(request.get_json(force=True), bot)
         chat_id = update.effective_chat.id
         text = update.message.text
+        grammar_id = []
 
-        pat = re.compile(r'([A-Z|a-z][^\.!?]*[\.!?])')
-        patt = pat.findall(text)
-        # lang = detect(patt)
+        grammar = [{
+            "pattern": ["VERB", "PRON"],
+            "pesan":"Kata kerja ditempatkan setelah kata ganti",
+            "koreksi":[1, 0],  # PRON, VERB
+            "contoh":"we read",
+            "status":"error1",
+            "err_id":1}]
 
-        # def tag_list_component(doc):
-        #     tags = [token.tag_ for token in doc]
-        #     doc.set_extension('tags_', default=False, force=True)
-        #     doc._.tags_ = tags
+        def grammar_checker(testing, testing_list, testing_pos):
+            check = 0
 
-        #     return doc
+            # iterate through possible errors
+            for err in grammar:
+                indexes = []
 
-        # if(nlp.has_pipe("tag_list_pipe")):
-        #     nlp.remove_pipe("tag_list_pipe")
-        # nlp.add_pipe(tag_list_component, name="tag_list_pipe")
+                # look for error patterns in the list of POS tags
+                for i in range(len(testing_pos)):
 
-        for i in patt:
-            langgg = detect(i)
-            if langgg == 'en':
-                check = Speller(lang='en')
-                spelllcheck = check(i)
+                    # i += check
 
-                doc = nlp(spelllcheck)
-                # doc2 = doc._.tags_
-                # bot.sendMessage(chat_id, doc2)
+                    # found a match
+                    if testing_pos[i:i+len(err["pattern"])] == err["pattern"]:
+                        indexes.append((i, i+len(err["pattern"])))
 
-                poss = " ".join(token.pos_ for token in doc)
-                # posstext = " ".join(token.text for token in doc)
-                possplit = poss.split()
-                if "PRON" and "VERB" in poss:
-                    if possplit.index("PRON") != 0:
-                        i = possplit.index("PRON")
-                        possplit[0], possplit[i] = possplit[i], possplit[0]
-                        bot.sendMessage(chat_id, possplit)
-                else:
-                    bot.sendMessage(chat_id, "tidak lengkap")
-            else:
-                bot.sendMessage(chat_id, "English please")
-            break
+                        if err["err_id"] == 1:
+                            koreksi_pos = [
+                                testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
+                            koreksi = [
+                                testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
 
-        # kalimat = text.split()
-        # spam2 = len(kalimat)
-        # if(spam2 <= 10):
-        #     bot.send_message(chat_id, "okee")
-
-        # match_dot = re.compile((?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s)
-        # dotInText = match_dot.search(text)
-        # if dotInText.group:
-        #     bot.send_message(
-        #         chat_id, "Sorry, your text is too much. Please write the simple text")
-        # else:
-        #     lang = detect(text)
-        #     if lang == "en":
-        #         bot.send_message(chat_id, "good")
-        #     else:
-        #         bot.send_message(chat_id, "not good")
-
-        #
-
-
-# kalimat = text.split()
-# spam2 = len(kalimat)
-# if(spam2 <= 10):
-# lang = detect(text)
-# if(lang == 'en'):
-# lang = detect(text)
-
-# bot.send_message(chat_id, lang)
-# else:
-#     bot.send_message(
-#         chat_id, "Sorry, your text is too much. Please write the simple text")
+                            for j in range(len(indexes)):
+                                testing_list[i:indexes[j][1]] = koreksi
+                                testing_pos[indexes[j][0]
+                                    :indexes[j][1]] = koreksi_pos
+                                grammar_id.extend([i, i+1])
+        langgg = detect(text)
+        if langgg == 'en':
+            check = Speller(lang='en')
+            sp = check(text)
+        textsplit = sp.split()
+        doc = nlp(sp)
+        poss = " ".join(token.pos_ for token in doc)
+        possplit = poss.split()
+        grammar_checker(" ".join(textsplit), textsplit, possplit)
+        output2 = textsplit
+        output3 = ' '.join(output2)
+        bot.sendMessage(chat_id, output3)
 
         return 'ok'
     return 'error'

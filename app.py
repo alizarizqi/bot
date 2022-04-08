@@ -18,16 +18,16 @@ def webhook():
         update = telegram.Update.de_json(request.get_json(force=True), bot)
         chat_id = update.effective_chat.id
         text = update.message.text
-        grammar_id = []
-        langgg = detect(text)
-        if langgg == 'en':
-            checkk = Speller(lang='en')
-            sp = checkk(text)
-            # textsplit = sp.split()
-            doc = nlp(sp)
-            poss = " ".join(token.pos_ for token in doc)
-            # possplit = poss.split()
-            bot.send_message(chat_id, poss)
+        # grammar_id = []
+        # langgg = detect(text)
+        # if langgg == 'en':
+        #     checkk = Speller(lang='en')
+        #     sp = checkk(text)
+        #     # textsplit = sp.split()
+        #     doc = nlp(sp)
+        #     poss = " ".join(token.pos_ for token in doc)
+        # possplit = poss.split()
+        bot.send_message(chat_id, text)
         # grammar = [{
         #     "pattern": ["VERB", "PRON"],
         #     "pesan":"Kata kerja ditempatkan setelah kata ganti",

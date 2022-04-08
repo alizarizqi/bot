@@ -30,7 +30,7 @@ def webhook():
             grammar_checker(" ".join(textsplit), textsplit, possplit)
             output2 = textsplit
             output3 = ' '.join(output2)
-            bot.sendMessage(chat_id, output3)
+            bot.send_message(chat_id, output3)
 
         grammar = [{
             "pattern": ["VERB", "PRON"],

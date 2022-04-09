@@ -28,13 +28,22 @@ def webhook():
             poss = " ".join(token.pos_ for token in doc)
             possplit = poss.split()
 
-            grammar = [{
-                "pattern": ["VERB", "PRON"],
-                "pesan":"Kata kerja ditempatkan setelah kata ganti",
-                "koreksi":[1, 0],  # PRON, VERB
-                "contoh":"we read",
-                "status":"error1",
-                "err_id":1}]
+            grammar = [
+                {
+                    "pattern": ["VERB", "PRON"],
+                    "pesan":"Kata kerja ditempatkan setelah kata ganti",
+                    "koreksi":[1, 0],  # PRON, VERB
+                    "contoh":"we read",
+                    "status":"error1",
+                    "err_id":1},
+                {
+                    "pattern": ["VERB", "AUX", "PRON"],
+                    "pesan":"Kata kerja ditempatkan setelah kata ganti",
+                    "koreksi":[2, 1, 0],  # PRON, AUX, VERB
+                    "contoh":"we read",
+                    "status":"error1",
+                    "err_id":2}
+            ]
 
             def grammar_checker(testing, testing_list, testing_pos):
                 check = 0
@@ -47,6 +56,7 @@ def webhook():
                         # found a match
                         if testing_pos[i:i+len(err["pattern"])] == err["pattern"]:
                             indexes.append((i, i+len(err["pattern"])))
+
                             if err["err_id"] == 1:
                                 koreksi_pos = [
                                     testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
@@ -54,8 +64,23 @@ def webhook():
                                     testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
                                 for j in range(len(indexes)):
                                     testing_list[i:indexes[j][1]] = koreksi
-                                    testing_pos[indexes[j][0]:indexes[j][1]] = koreksi_pos
+                                    testing_pos[indexes[j][0]
+                                        :indexes[j][1]] = koreksi_pos
                                     grammar_id.extend([i, i+1])
+
+                            if err["err_id"] == 2:
+                                koreksi_pos = [
+                                    testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
+                                koreksi = [
+                                    testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
+
+                                for j in range(len(indexes)):
+                                    testing_list[i:indexes[j][1]] = koreksi
+                                    testing_pos[indexes[j][0]
+                                        :indexes[j][1]] = koreksi_pos
+                                    grammar_id.extend(
+                                        range(i, i+len(err["pattern"])))
+
             grammar_checker(" ".join(textsplit), textsplit, possplit)
             output2 = textsplit
             output3 = ' '.join(output2)

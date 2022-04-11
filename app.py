@@ -27,6 +27,7 @@ def webhook():
             doc = nlp(sp)
             poss = " ".join(token.pos_ for token in doc)
             possplit = poss.split()
+            bot.send_message(chat_id, possplit)
 
             grammar = [
                 {
@@ -133,7 +134,7 @@ def webhook():
             grammar_checker(" ".join(textsplit), textsplit, possplit)
             output2 = textsplit
             output3 = ' '.join(output2)
-            bot.send_message(chat_id, output3)
+            # bot.send_message(chat_id, output3)
 
         return 'ok'
     return 'error'

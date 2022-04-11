@@ -37,26 +37,13 @@ def webhook():
                     "status":"error1",
                     "err_id":1},
                 {
-                    "pattern": ["VERB", "AUX", "PRON"],
+                    "pattern": ["VERB", "NOUN", "AUX"],
                     "pesan":"Kata kerja ditempatkan setelah kata ganti",
-                    "koreksi":[2, 1, 0],  # PRON, AUX, VERB
-                    "contoh":"we read",
-                    "status":"error1",
+                    "koreksi":[0, 2, 1],  # PRON, AUX, VERB
+                    "contoh":"reading book the",
+                    "status":"error2",
                     "err_id":2},
-                {
-                    "pattern": ["VERB", "NOUN", "DET"],
-                    "pesan":"Noun after Determinan",
-                    "koreksi":[0, 2, 1],  # VERB, DET, NOUN
-                    "contoh":"read the book",
-                    "status":"error3",
-                    "err_id":3},
-                {
-                    "pattern": ["AUX", "VERB", "NOUN", "DET"],
-                    "pesan":"Noun after Determinan",
-                    "koreksi":[0, 1, 3, 2],  # AUX VERB, DET, NOUN
-                    "contoh":"I am reading the book",
-                    "status":"error4",
-                    "err_id":4}
+
             ]
 
             def grammar_checker(testing, testing_list, testing_pos):
@@ -81,7 +68,7 @@ def webhook():
                                     testing_pos[indexes[j][0]                                                :indexes[j][1]] = koreksi_pos
                                     grammar_id.extend([i, i+1])
 
-                            if err["err_id"] == 2 and 3:
+                            if err["err_id"] == 2:
                                 koreksi_pos = [
                                     testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
                                 koreksi = [

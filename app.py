@@ -78,11 +78,10 @@ def webhook():
                                     testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
                                 for j in range(len(indexes)):
                                     testing_list[i:indexes[j][1]] = koreksi
-                                    testing_pos[indexes[j][0]
-                                        :indexes[j][1]] = koreksi_pos
+                                    testing_pos[indexes[j][0]                                                :indexes[j][1]] = koreksi_pos
                                     grammar_id.extend([i, i+1])
 
-                            if err["err_id"] == 2:
+                            if err["err_id"] == 2 and 3:
                                 koreksi_pos = [
                                     testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
                                 koreksi = [
@@ -90,20 +89,7 @@ def webhook():
 
                                 for j in range(len(indexes)):
                                     testing_list[i:indexes[j][1]] = koreksi
-                                    testing_pos[indexes[j][0]
-                                        :indexes[j][1]] = koreksi_pos
-                                    grammar_id.extend(
-                                        range(i, i+len(err["pattern"])))
-                            if err["err_id"] == 3:
-                                koreksi_pos = [
-                                    testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-                                koreksi = [
-                                    testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-
-                                for j in range(len(indexes)):
-                                    testing_list[i:indexes[j][1]] = koreksi
-                                    testing_pos[indexes[j][0]
-                                        :indexes[j][1]] = koreksi_pos
+                                    testing_pos[indexes[j][0]                                                :indexes[j][1]] = koreksi_pos
                                     grammar_id.extend(
                                         range(i, i+len(err["pattern"])))
 

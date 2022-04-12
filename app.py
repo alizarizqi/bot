@@ -145,11 +145,11 @@ def webhook():
                         if testing_pos[i:i+len(err["pattern"])] == err["pattern"]:
                             # indexes.append((i, i+len(err["pattern"])))
                             if err["err_id"] == 1:
-                                return print("Tense is Simple Present Tense")
+                                return "Tense is Simple Present Tense"
                             if err["err_id"] == 2:
-                                return print("Tense is Simple Present Tense 2")
+                                return "Tense is Simple Present Tense 2"
                             if err["err_id"] == 3:
-                                return print("Tense is Present Continuous Tense")
+                                return "Tense is Present Continuous Tense"
 
             bot.send_message(chat_id, detect_tense(poss2split))
 

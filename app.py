@@ -109,49 +109,49 @@ def webhook():
             doc2 = nlp(output3)
             poss2 = " ".join(token.pos_ for token in doc2)
             poss2split = poss2.split()
-            bot.send_message(chat_id, poss2split)
+            # bot.send_message(chat_id, poss2split)
             # bot.send_message(chat_id, output3)
 
-            # grammarDetectTense = [
-            #     {
-            #         "pattern": ["PRON", "VERB", "DET", "NOUN"],
-            #         "pesan":"Simple Present Tense",
-            #         "err_id":1},
-            #     {
-            #         "pattern": ["PRON", "VERB", "ADP", "NOUN", "DET", "NOUN"],
-            #         "pesan":"Simple Present Tense",
-            #         "err_id":2},
-            #     {
-            #         "pattern": ["PRON", "AUX", "VERB", "NOUN", "ADV"],
-            #         "pesan":"Present Continuous Tense",
-            #         "err_id":3}
+            grammarDetectTense = [
+                {
+                    "pattern2": ["PRON", "VERB", "DET", "NOUN"],
+                    "pesan":"Simple Present Tense",
+                    "err2_id":1},
+                {
+                    "pattern2": ["PRON", "VERB", "ADP", "NOUN", "DET", "NOUN"],
+                    "pesan":"Simple Present Tense",
+                    "err2_id":2},
+                {
+                    "pattern2": ["PRON", "AUX", "VERB", "NOUN", "ADV"],
+                    "pesan":"Present Continuous Tense",
+                    "err2_id":3}
 
-            # ]
+            ]
 
-            # def detect_tense(testing_pos):
+            def detect_tense(testing_pos):
 
-            #     # check = 0
+                # check = 0
 
-            #     # iterate through possible errors
-            #     for err in grammarDetectTense:
-            #         indexes = []
+                # iterate through possible errors
+                for err in grammarDetectTense:
+                    indexes = []
 
-            #         # look for error patterns in the list of POS tags
-            #         for i in range(len(testing_pos)):
+                    # look for error patterns in the list of POS tags
+                    for i in range(len(testing_pos)):
 
-            #             # i += check
+                        # i += check
 
-            #             # found a match
-            #             if testing_pos[i:i+len(err["pattern"])] == err["pattern"]:
-            #                 # indexes.append((i, i+len(err["pattern"])))
-            #                 if err["err_id"] == 1:
-            #                     return print("Tense is Simple Present Tense")
-            #                 if err["err_id"] == 2:
-            #                     return print("Tense is Simple Present Tense 2")
-            #                 if err["err_id"] == 3:
-            #                     return print("Tense is Present Continuous Tense")
-            # out = detect_tense(poss2split)
-            # bot.send_message(chat_id, out)
+                        # found a match
+                        if testing_pos[i:i+len(err["pattern2"])] == err["pattern2"]:
+                            # indexes.append((i, i+len(err["pattern"])))
+                            if err["err2_id"] == 1:
+                                return print("Tense is Simple Present Tense")
+                            if err["err2_id"] == 2:
+                                return print("Tense is Simple Present Tense 2")
+                            if err["err2_id"] == 3:
+                                return print("Tense is Present Continuous Tense")
+            out = detect_tense(poss2split)
+            bot.send_message(chat_id, out)
 
         return 'ok'
     return 'error'

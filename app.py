@@ -154,6 +154,8 @@ def webhook():
                                 return "Tense is Simple Present Tense 2"
                             if err["err_id"] == 3:
                                 return "Tense is Present Continuous Tense"
+                            if err["err_id"] == 3:
+                                return "Simple Past Tense"
 
             bot.send_message(chat_id, detect_tense(poss2split))
 

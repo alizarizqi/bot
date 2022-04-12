@@ -64,7 +64,14 @@ def webhook():
                     "koreksi":[0, 1, 2, 4, 3],  # PRON, AUX, VERB, DET, NOUN
                     "contoh":"i am reading the book",
                     "status":"error5",
-                    "err_id":5}
+                    "err_id":5},
+                {
+                    "pattern": ["PRON", "ADV", "VERB"],
+                    "pesan":"adv after verb",
+                    "koreksi":[0, 2, 1],  # PRON, AUX, VERB, DET, NOUN
+                    "contoh":"i come here",
+                    "status":"error6",
+                    "err_id":6}
 
             ]
 
@@ -85,67 +92,17 @@ def webhook():
                         if testing_pos[i:i+len(err["pattern"])] == err["pattern"]:
                             indexes.append((i, i+len(err["pattern"])))
 
-                            if err["err_id"] == 1:
-                                koreksi_pos = [
-                                    testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-                                koreksi = [
-                                    testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
+                        koreksi_pos = [
+                            testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
+                        koreksi = [
+                            testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
 
-                                for j in range(len(indexes)):
-                                    testing_list[i:indexes[j][1]] = koreksi
-                                    testing_pos[indexes[j][0]                                                :indexes[j][1]] = koreksi_pos
-                                    grammar_id.extend([i, i+1])
+                        for j in range(len(indexes)):
+                            testing_list[i:indexes[j][1]] = koreksi
+                            testing_pos[indexes[j][0]
+                                :indexes[j][1]] = koreksi_pos
 
-                            if err["err_id"] == 2:
-                                koreksi_pos = [
-                                    testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-                                koreksi = [
-                                    testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-
-                                for j in range(len(indexes)):
-                                    testing_list[i:indexes[j][1]] = koreksi
-                                    testing_pos[indexes[j][0]                                                :indexes[j][1]] = koreksi_pos
-
-                                grammar_id.extend(
-                                    range(i, i+len(err["pattern"])))
-
-                            if err["err_id"] == 3:
-                                koreksi_pos = [
-                                    testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-                                koreksi = [
-                                    testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-
-                                for j in range(len(indexes)):
-                                    testing_list[i:indexes[j][1]] = koreksi
-                                    testing_pos[indexes[j][0]                                                :indexes[j][1]] = koreksi_pos
-
-                                grammar_id.extend(
-                                    range(i, i+len(err["pattern"])))
-                            if err["err_id"] == 4:
-                                koreksi_pos = [
-                                    testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-                                koreksi = [
-                                    testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-
-                                for j in range(len(indexes)):
-                                    testing_list[i:indexes[j][1]] = koreksi
-                                    testing_pos[indexes[j][0]                                                :indexes[j][1]] = koreksi_pos
-
-                                grammar_id.extend(
-                                    range(i, i+len(err["pattern"])))
-
-                            if err["err_id"] == 5:
-                                koreksi_pos = [
-                                    testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-                                koreksi = [
-                                    testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-
-                                for j in range(len(indexes)):
-                                    testing_list[i:indexes[j][1]] = koreksi
-                                    testing_pos[indexes[j][0]                                                :indexes[j][1]] = koreksi_pos
-
-                                grammar_id.extend(
-                                    range(i, i+len(err["pattern"])))
+                            grammar_id.extend(range(i, i+len(err["pattern"])))
 
             grammar_checker(" ".join(textsplit), textsplit, possplit)
             output2 = textsplit

@@ -106,10 +106,11 @@ def webhook():
             grammar_checker(" ".join(textsplit), textsplit, possplit)
             output2 = textsplit
             output3 = ' '.join(output2)
-            # doc2 = nlp(output3)
-            # poss2 = " ".join(token.pos_ for token in doc2)
-            # poss2split = poss2.split()
-            bot.send_message(chat_id, output3)
+            doc2 = nlp(output3)
+            poss2 = " ".join(token.pos_ for token in doc2)
+            poss2split = poss2.split()
+            bot.send_message(chat_id, poss2split)
+            # bot.send_message(chat_id, output3)
 
             # grammarDetectTense = [
             #     {

@@ -92,17 +92,17 @@ def webhook():
                         if testing_pos[i:i+len(err["pattern"])] == err["pattern"]:
                             indexes.append((i, i+len(err["pattern"])))
 
-                        koreksi_pos = [
-                            testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
-                        koreksi = [
-                            testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
+                            koreksi_pos = [
+                                testing_pos[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
+                            koreksi = [
+                                testing_list[i:i+len(err["pattern"])][a] for a in err["koreksi"]]
 
-                        for j in range(len(indexes)):
-                            testing_list[i:indexes[j][1]] = koreksi
-                            testing_pos[indexes[j][0]
-                                :indexes[j][1]] = koreksi_pos
+                            for j in range(len(indexes)):
+                                testing_list[i:indexes[j][1]] = koreksi
+                                testing_pos[indexes[j][0]
+                                    :indexes[j][1]] = koreksi_pos
 
-                        grammar_id.extend(range(i, i+len(err["pattern"])))
+                            grammar_id.extend(range(i, i+len(err["pattern"])))
 
             grammar_checker(" ".join(textsplit), textsplit, possplit)
             output2 = textsplit

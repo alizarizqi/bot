@@ -102,7 +102,7 @@ def webhook():
                             testing_pos[indexes[j][0]
                                 :indexes[j][1]] = koreksi_pos
 
-                            grammar_id.extend(range(i, i+len(err["pattern"])))
+                        grammar_id.extend(range(i, i+len(err["pattern"])))
 
             grammar_checker(" ".join(textsplit), textsplit, possplit)
             output2 = textsplit

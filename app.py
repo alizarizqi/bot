@@ -114,17 +114,17 @@ def webhook():
 
             grammarDetectTense = [
                 {
-                    "pattern2": ["PRON", "VERB", "DET", "NOUN"],
+                    "pattern": ["PRON", "VERB", "DET", "NOUN"],
                     "pesan":"Simple Present Tense",
-                    "err2_id":1},
+                    "err_id":1},
                 {
-                    "pattern2": ["PRON", "VERB", "ADP", "NOUN", "DET", "NOUN"],
+                    "pattern": ["PRON", "VERB", "ADP", "NOUN", "DET", "NOUN"],
                     "pesan":"Simple Present Tense",
-                    "err2_id":2},
+                    "err_id":2},
                 {
-                    "pattern2": ["PRON", "AUX", "VERB", "NOUN", "ADV"],
+                    "pattern": ["PRON", "AUX", "VERB", "NOUN", "ADV"],
                     "pesan":"Present Continuous Tense",
-                    "err2_id":3}
+                    "err_id":3}
 
             ]
 
@@ -142,13 +142,13 @@ def webhook():
                         # i += check
 
                         # found a match
-                        if testing_pos[i:i+len(err["pattern2"])] == err["pattern2"]:
+                        if testing_pos[i:i+len(err["pattern"])] == err["pattern"]:
                             # indexes.append((i, i+len(err["pattern"])))
-                            if err["err2_id"] == 1:
+                            if err["err_id"] == 1:
                                 return print("Tense is Simple Present Tense")
-                            if err["err2_id"] == 2:
+                            if err["err_id"] == 2:
                                 return print("Tense is Simple Present Tense 2")
-                            if err["err2_id"] == 3:
+                            if err["err_id"] == 3:
                                 return print("Tense is Present Continuous Tense")
 
             bot.send_message(chat_id, detect_tense(poss2split))

@@ -28,6 +28,7 @@ def webhook():
             # poss = " ".join(token.pos_ for token in doc)
             # possplit = poss.split()
             # bot.send_message(chat_id, possplit)
+            # bot.send_message(chat_id, sp)
             bot.send_message(chat_id, sp)
             # grammartenses = [
             # {

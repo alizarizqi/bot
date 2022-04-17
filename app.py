@@ -23,11 +23,167 @@ def webhook():
         if langgg == 'en':
             checkk = Speller(lang='en')
             sp = checkk(text)
-            textsplit = sp.split()
-            doc = nlp(sp)
-            poss = " ".join(token.pos_ for token in doc)
-            possplit = poss.split()
-            bot.send_message(chat_id, possplit)
+            # textsplit = sp.split()
+            # doc = nlp(sp)
+            # poss = " ".join(token.pos_ for token in doc)
+            # possplit = poss.split()
+            # bot.send_message(chat_id, possplit)
+            bot.send_message(chat_id, sp)
+            # grammartenses = [
+            # {
+            #     "pattern":r"every day",
+            #     "pesan":"simple present tense",
+            # "err_id":1
+            # },
+            # {
+            #         "pattern":r"every month",
+            #         "pesan":"simple present tense",
+            #     "err_id":2
+            #     },
+            # {
+            #         "pattern":r"every week",
+            #         "pesan":"simple present tense",
+            #     "err_id":3
+            #     },
+            # {
+            #         "pattern":r"every year",
+            #         "pesan":"simple present tense",
+            #     "err_id":4
+            #     },
+            # {
+            #         "pattern":r"always",
+            #         "pesan":"simple present tense",
+            #     "err_id":5
+            #     },
+            # {
+            #         "pattern":r"frequently",
+            #         "pesan":"simple present tense",
+            #     "err_id":6
+            #     },
+            # {
+            #         "pattern":r"sometimes",
+            #         "pesan":"simple present tense",
+            #     "err_id":7
+            #     },
+            # {
+            #         "pattern":r"are",
+            #         "pesan":"present continuous tense",
+            #     "err_id":8
+            #     },
+            # {
+            #         "pattern":r"am",
+            #         "pesan":"present continuous tense",
+            #     "err_id":9
+            #     },
+            # {
+            #         "pattern":r"is",
+            #         "pesan":"present continuous tense",
+            #     "err_id":10
+            #     },
+            # {
+            #         "pattern":r"now",
+            #         "pesan":"present continuous tense",
+            #     "err_id":11
+            #     },
+            # {
+            #         "pattern":r"right now",
+            #         "pesan":"present continuous tense",
+            #     "err_id":12
+            #     },
+            # {
+            #         "pattern":r"at this moment",
+            #         "pesan":"present continuous tense",
+            #     "err_id":13
+            #     },
+            # {
+            #         "pattern":r"will",
+            #         "pesan":"simple future tense",
+            #     "err_id":14
+            #     },
+            # {
+            #         "pattern":r"tomorrow",
+            #         "pesan":"simple future tense",
+            #     "err_id":15
+            #     },
+            # {
+            #         "pattern":r"next week",
+            #         "pesan":"simple future tense",
+            #     "err_id":16
+            #     },
+            # {
+            #         "pattern":r"next month",
+            #         "pesan":"simple future tense",
+            #     "err_id":17
+            #     },
+            # {
+            #         "pattern":r"next year",
+            #         "pesan":"simple future tense",
+            #     "err_id":18
+            #     },
+            # {
+            #         "pattern":r"next monday",
+            #         "pesan":"simple future tense",
+            #     "err_id":19
+            #     },
+            # {
+            #         "pattern":r"next tuesday",
+            #         "pesan":"simple future tense",
+            #     "err_id":20
+            #     },
+            # {
+            #         "pattern":r"next wednesday",
+            #         "pesan":"simple future tense",
+            #     "err_id":21
+            #     },
+            # {
+            #         "pattern":r"next thursday",
+            #         "pesan":"simple future tense",
+            #     "err_id":22
+            #     },
+            # {
+            #         "pattern":r"next friday",
+            #         "pesan":"simple future tense",
+            #     "err_id":23
+            #     },
+            # {
+            #         "pattern":r"next saturday",
+            #         "pesan":"simple future tense",
+            #     "err_id":24
+            #     },
+            # {
+            #         "pattern":r"next sunday",
+            #         "pesan":"simple future tense",
+            #     "err_id":25
+            #     },
+            # {
+            #         "pattern":r"this week",
+            #         "pesan":"simple future tense",
+            #     "err_id":26
+            #     },
+            # {
+            #         "pattern":r"this month",
+            #         "pesan":"simple future tense",
+            #     "err_id":27
+            #     },
+            # {
+            #         "pattern":r"this year",
+            #         "pesan":"simple future tense",
+            #     "err_id":28
+            #     }
+            # ]
+            # for err in grammartenses:
+            #     found = re.search(err["pattern"], sp)
+            #     if found:
+            #         if err["err_id"] == 1 or err["err_id"] == 2 or err["err_id"] == 3 or err["err_id"] == 4 or err["err_id"] == 5 or err["err_id"] == 6 or err["err_id"] == 7:
+            #             bot.send_message(chat_id,"simple present tense")
+            #         elif err["err_id"] == 8 or err["err_id"] == 9 or err["err_id"] == 10:
+            #             bot.send_message(chat_id,"present continuous tense")
+            #         elif err["err_id"] == 11 or err["err_id"] == 12 or err["err_id"] == 13:
+            #             bot.send_message(chat_id,"present continuous tense 2")
+            #         elif err["err_id"] == 14:
+            #             bot.send_message(chat_id,"simple future tense")
+            #         elif err["err_id"] == 15 or err["err_id"] == 16 or err["err_id"] == 17 or err["err_id"] == 18 or err["err_id"] == 19 or err["err_id"] == 20 or err["err_id"] == 21 or err["err_id"] == 22 or err["err_id"] == 23 or err["err_id"] == 24 or err["err_id"] == 25 or err["err_id"] == 26 or err["err_id"] == 27 or err["err_id"] == 28:
+            #             bot.send_message(chat_id,"simple future tense 2")
 
             # grammar = [
             #     {
